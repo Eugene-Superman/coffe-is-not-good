@@ -12,15 +12,15 @@ import {
 import { CofeesService } from './cofees.service';
 import { CreateCofeeDto } from './dto/create-cofee.dto';
 import { UpdateCofeeDto } from './dto/update-cofee.dto';
+import { PaginationQueryDto } from './dto/pagination-query.dto';
 
 @Controller('cofees')
 export class CofeesController {
     constructor(private readonly cofeeService: CofeesService) {}
 
     @Get()
-    finddAll(@Query() query) {
-        // const { limit, offset } = query;
-        return this.cofeeService.getAll();
+    finddAll(@Query() paginationQueryDto: PaginationQueryDto) {
+        return this.cofeeService.getAll(paginationQueryDto);
     }
 
     @Get(':id')
